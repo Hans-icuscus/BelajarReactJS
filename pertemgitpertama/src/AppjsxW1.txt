@@ -1,0 +1,92 @@
+import { useState } from "react";
+import "./App.css";
+
+function Header() {
+  return (
+    <div className="title">
+      <h1>Kartu Siswa</h1>
+    </div>
+  );
+}
+
+//props
+function Biodata(props) {
+  return (
+    <div className="card">
+      <h2>{props.nama}</h2>
+      <p>
+        <strong>NISN:</strong> {props.nisn}
+      </p>
+      <p>
+        <strong>Kelas:</strong> {props.kelas}
+      </p>
+    </div>
+  );
+}
+
+export default function App() {
+  //destructuring variable
+  const [showForm, setShowForm] = useState(false);
+
+  const siswa = [
+    { nama: "Yoga", nisn: "12345", kelas: "XI PPLG 1" },
+    { nama: "Willy", nisn: "12345", kelas: "XI PPLG 2" },
+  ];
+
+  return (
+    <>
+      <Header />
+
+      <div className="action-bar">
+        <button className="btn btn-add" onClick={() => setShowForm(true)}>
+          Tambah Siswa
+        </button>
+      </div>
+
+      <div className="card-container">
+        {
+          //1. siswa.map()
+          //2. siswa.map((param)=>(data yang mau di looping))
+          siswa.map((nilai, idx) => (
+            <Biodata
+              key={idx}
+              nama={nilai.nama}
+              nisn={nilai.nisn}
+              kelas={nilai.kelas}
+            />
+          ))
+        }
+      </div>
+
+      {showForm && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Form Tambah</h3>
+            <form>
+              <input type="text" name="nama" placeholder="Nama"/>
+              <input type="text" name="nisn" placeholder="NISN"/>
+              <select name="kelas" id="kelas">
+                <option value="">--Pilih Kelas--</option>
+                <option value="X PPLG 1">X PPLG 1</option>
+                <option value="X PPLG 2">X PPLG 2</option>
+                <option value="X PPLG 3">X PPLG 3</option>
+                <option value="XI PPLG 1">XI PPLG 1</option>
+                <option value="XI PPLG 2">XI PPLG 2</option>
+              </select>
+            </form>
+            <div className="modal-actions">
+              <button
+                className="btn btn-cancel"
+                onClick={() => setShowForm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+// export default App;

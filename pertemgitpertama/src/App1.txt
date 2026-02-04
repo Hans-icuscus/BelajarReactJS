@@ -1,0 +1,39 @@
+import { useState } from 'react'
+
+import './App.css'
+
+function Greeting(){
+  return (<>
+  <h1>haloo</h1>
+  <h3>selamat pagi</h3>
+  </>
+)
+}
+
+//biar dinamis katanya, pake props, boadataparameter kasi props
+//yes benar dinamis, fleksibel, variable root blablablabal
+function Biodata(props){
+  return (<>
+  <p>Nama : {props.nama}</p>
+  <p>Kelas : {props.kelas}</p>
+  <p>NISN : {props.nisn}</p>
+  </>
+  )
+}
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+    <Greeting/>
+    
+    <Biodata nama="hanes" kelas="XI PLG1" nisn="77473"/>
+
+    <Biodata nama="naren" kelas="XI PLG2" nisn="74533"/>
+    </>
+  )
+}
+//nah jadi variativable gituu
+//nah satu fungsi tpi nnti variable lain dilanjutkan per fungsi
+export default App
